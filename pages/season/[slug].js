@@ -13,7 +13,7 @@ function Season() {
             <Info>
                 <Name>
                     <h2>Рик и Морти 5 сезон смотреть онлайн</h2>
-                    <small class="date">2021-06-20</small>
+                    <small className="date">2021-06-20</small>
                 </Name>
                 <Autors>
                     <p><span>Авторы:</span> Ройланд Джастин, Хармон Дэн</p>
