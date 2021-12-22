@@ -13,7 +13,7 @@ function Season() {
             <Info>
                 <Name>
                     <h2>Рик и Морти 5 сезон смотреть онлайн</h2>
-                    <small className="date">2021-06-20</small>
+                    {/* <small>2021-06-20</small> */}
                 </Name>
                 <Autors>
                     <p><span>Авторы:</span> Ройланд Джастин, Хармон Дэн</p>
@@ -36,7 +36,7 @@ function Season() {
                         </ContainerPicture>
                         <Info>
                             <p>Спецвыпуск</p>
-                            <small>2021-08-05</small>
+                            {/* <small>2021-08-05</small> */}
                         </Info>
                     </article>
                 </Li>
@@ -50,7 +50,7 @@ function Season() {
                         </ContainerPicture>
                         <Info>
                             <p>Спецвыпуск</p>
-                            <small>2021-08-05</small>
+                            {/* <small>2021-08-05</small> */}
                         </Info>
                     </article>
                 </li>
@@ -64,7 +64,7 @@ function Season() {
                         </ContainerPicture>
                         <Info>
                             <p>Спецвыпуск</p>
-                            <small>2021-08-05</small>
+                            {/* <small>2021-08-05</small> */}
                         </Info>
                     </article>
                 </li>
@@ -78,7 +78,7 @@ function Season() {
                         </ContainerPicture>
                         <Info>
                             <p>Спецвыпуск</p>
-                            <small>2021-08-05</small>
+                            {/* <small>2021-08-05</small> */}
                         </Info>
                     </article>
                 </li>
@@ -185,9 +185,9 @@ const Info = styled.div`
         margin: 5px 0 1px;
         line-height: 1;    
     }
-    & small {
+    /* & small {
         color: gray;
-    }
+    } */
 `
 
 const Video = styled.div`

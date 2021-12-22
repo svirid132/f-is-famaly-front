@@ -11,8 +11,14 @@ import NavElem from "./navElem"
 const Navigation = ({ seasons }) => {
 
     const [toggle, setToggle] = useState(false);
-    // const navElem = seasons.attributes
 
+    const season = {link: "", text: "сезоны"};
+    const seasonUnders = seasons.map((season) => {
+        const text = season.attributes.Title;
+        const link = `/season/${season.attributes.Number}`;
+        return {link: link, text: text};
+    });
+    
     return (
     <Nav>
         { !toggle && <Button selected onClick = {() => setToggle(true)}><FontAwesomeIcon icon={faBars} /></Button> }
@@ -21,11 +27,8 @@ const Navigation = ({ seasons }) => {
         <List viewMobile = {toggle}>
             <ListElem> 
                 <NavElem 
-                    content = {{link: "", text: "text"}}
-                    under = {[
-                        {link: "", text: "text"},
-                        {link: "", text: "text"}
-                    ]}
+                    content = {season}
+                    under = { seasonUnders }
                 /> 
             </ListElem>
         </List>

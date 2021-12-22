@@ -36,9 +36,9 @@ function NavElem({content, under}) {
             </ElemWrapper>
 
             {under ? 
-                <List viewComp = {compToggle} >
+                <UnderList viewComp = {compToggle} >
                     { underElems }
-                </List>
+                </UnderList>
             : null}
         </Body>
     )
@@ -68,12 +68,14 @@ const ElemWrapper = styled.div`
     }
 `
 
-const List = styled.ul`
+const UnderList = styled.ul`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    background-color: #F3DAAF;
     @media screen and (min-width: 900px) {
         display: ${props => props.viewComp ? "flex" : "none"};
+        background-color: transparent;
         flex-direction: column;
         align-items: center;
         position: absolute;
