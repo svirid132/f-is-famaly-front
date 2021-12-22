@@ -53,7 +53,7 @@ const ElemWrapper = styled.div`
     display: flex;
     align-items: center;
     background-color: #F3DAAF;
-    height: 100%;
+    height: 80%;
     padding: 10px 0 10px 20px;
     border: solid gray;
     border-width: 2px 0;
@@ -62,9 +62,9 @@ const ElemWrapper = styled.div`
     }
     @media screen and (min-width: 900px) {
         padding: 0 20px;
-        align-items: center;
         border: 0;
         background-color: transparent;
+        height: 100%;
     }
 `
 

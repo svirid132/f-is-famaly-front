@@ -1,10 +1,11 @@
 import Navigation from './navigation'
 
-function Layout({header}) {
+function Layout({children, seasons}) {
     return (
-        <div>
-            <Navigation header={header} />
-        </div>
+        <>
+            <Navigation seasons={seasons} />
+            {children}
+        </>
     )
 }
 

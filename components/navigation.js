@@ -11,6 +11,7 @@ import NavElem from "./navElem"
 const Navigation = ({ seasons }) => {
 
     const [toggle, setToggle] = useState(false);
+    // const navElem = seasons.attributes
 
     return (
     <Nav>
@@ -74,6 +75,7 @@ const List = styled.ul`
     top: 100%;
     height: 100%;
     @media screen and (min-width: 900px) {
+        display: flex;
         position: static;
         top: 0;
         width: auto;
