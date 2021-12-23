@@ -45,6 +45,11 @@ const Nav = styled.nav`
     box-shadow: 0 5px 5px gray;/*x y прозрачность цвет*/
     width: 100%;
 
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
     @media screen and (min-width: 900px) {
         justify-content: flex-start;
     }
