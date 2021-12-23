@@ -2,7 +2,7 @@ import {useState} from "react"
 import Link from 'next/link'
 import React from 'react'
 import styled from 'styled-components'
-import NavUnderElem from './NavUnderElem';
+import NavUnderElem from './nav-under-elem';
 import { faBars, faTimes, faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

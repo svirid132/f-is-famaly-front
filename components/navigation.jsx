@@ -5,19 +5,19 @@ import logo from "../assets/F-is-famaly-logo.jpg"
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faTimes, faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons'
-import NavElem from "./navElem"
+import NavElem from "./nav-elem"
 
 
 const Navigation = ({ seasons }) => {
 
     const [toggle, setToggle] = useState(false);
 
-    const season = {link: "", text: "сезоны"};
-    const seasonUnders = seasons.map((season) => {
-        const text = season.attributes.Title;
-        const link = `/season/${season.attributes.Number}`;
-        return {link: link, text: text};
-    });
+    // const season = {link: "", text: "сезоны"};
+    // const seasonUnders = seasons.map((season) => {
+    //     const text = season.attributes.Title;
+    //     const link = `/season/${season.attributes.Number}`;
+    //     return {link: link, text: text};
+    // });
     
     return (
     <Nav>
@@ -26,10 +26,10 @@ const Navigation = ({ seasons }) => {
         <Image src={logo} alt="logo" width = {97} height={60} placeholder = "blur"/>
         <List viewMobile = {toggle}>
             <ListElem> 
-                <NavElem 
-                    content = {season}
+                {/* <NavElem 
+                    content = { season }
                     under = { seasonUnders }
-                /> 
+                />  */}
             </ListElem>
         </List>
     </Nav>

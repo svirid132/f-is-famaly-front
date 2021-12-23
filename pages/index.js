@@ -1,4 +1,4 @@
-import Home from '../components/Home'
+import Home from '../components/home'
 import Layout from '../components/layout'
 import {fetchAPI} from "./../lib/api"
 
@@ -10,15 +10,15 @@ export default function HomePage( { seasons }) {
   )
 }
 
-export async function getStaticProps() {
+// export async function getStaticProps() {
 
-  const seasons = await fetchAPI("/seasons", { populate: "*" });
-  const seasonsResult = seasons.data;
+//   const seasons = await fetchAPI("/seasons", { populate: "*" });
+//   const seasonsResult = seasons.data;
 
-  return {
-    props: {
-      seasons: seasonsResult,
-    },
-    revalidate: 1,
-  }
-}
+//   return {
+//     props: {
+//       seasons: seasonsResult,
+//     },
+//     revalidate: 1,
+//   }
+// }
