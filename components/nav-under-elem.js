@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { faBars, faTimes, faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-
 function NavUnderElem({content}) {
     return (
         <Body>
