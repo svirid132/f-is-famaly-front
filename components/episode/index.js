@@ -2,6 +2,7 @@ import { faBars, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-s
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ListLinkArticle from 'components/list-link-posters';
 import Poster from 'components/poster';
+import withLink from 'components/with-link';
 import React from 'react'
 import styled from 'styled-components'
 
@@ -13,8 +14,8 @@ function Episode({className}) {
             img: { src: "/expImg.webp", alt: "picture", info: "5 сезон спецвыпуск"},
             name: "Спецвыпуск",
             date: "2021-08-05",
-            href: "/season"
         };
+        elem.href = "/season";
         return elem;
     });
 
@@ -24,9 +25,15 @@ function Episode({className}) {
             <ControlVideo>
                 <video src="./assets/video.mp4" controls></video>
                 <HeaderBtn>
-                    <a><FontAwesomeIcon icon={faChevronLeft} />Предыдущая серия</a>
-                    <a><FontAwesomeIcon icon={faBars} />список серий</a>
-                    <a>следующая серия<FontAwesomeIcon icon={faChevronRight} /></a>
+                    <LinkButtonStyle href = "/">
+                        <Icon icon={faChevronLeft} />Предыдущая серия
+                    </LinkButtonStyle>
+                    <LinkButtonStyle href = "/">
+                        <Icon icon={faBars}/>список серий
+                    </LinkButtonStyle>
+                    <LinkButtonStyle href = "/">
+                        следующая серия<Icon icon={faChevronRight} />
+                    </LinkButtonStyle>
                 </HeaderBtn>
             </ControlVideo>
 
@@ -70,19 +77,26 @@ const HeaderBtn = styled.div`
     display: flex;
     justify-content: space-between;
     column-gap: 1px;
-    & a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: aqua;
-        padding: 15px 0;
-        width: 100%;
-        text-align: center;
-    }
-    & i {
-        margin: 0 10px;
-    }
 `
+
+const Button = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aqua;
+    padding: 15px 0;
+    width: 100%;
+    text-align: center;
+    @media screen and (min-width: 900px) {
+        padding: 20px 0;
+    }
+`;
+
+const LinkButton = withLink(Button);
+
+const LinkButtonStyle = styled(LinkButton)`
+  width: 100%;
+`;
 
 const Title = styled.div`
     border-bottom: 1px solid black;
@@ -96,6 +110,10 @@ const Date = styled.div`
     padding-left: 10px;
     font-size: 18px;
     border-bottom: 1px solid black;
+`
+
+const Icon = styled(FontAwesomeIcon)`
+    margin: 0 7px;
 `
 
 export default Episode

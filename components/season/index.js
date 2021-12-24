@@ -11,8 +11,8 @@ function Season() {
             img: { src: "/poster.jpg", alt: "picture", info: "5 сезон спецвыпуск"},
             name: "Спецвыпуск",
             date: "2021-08-05",
-            href: "/episode"
         };
+        elem.href = "/episode"
         return elem;
     });
 

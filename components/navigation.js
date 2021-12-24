@@ -6,7 +6,9 @@ import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faTimes, faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import NavElem from "./nav-elem"
+import withLink from "./with-link"
 
+const LinkImage = withLink(Image);
 
 const Navigation = ({ seasons }) => {
 
@@ -23,7 +25,7 @@ const Navigation = ({ seasons }) => {
     <Nav>
         { !toggle && <Button selected onClick = {() => setToggle(true)}><FontAwesomeIcon icon={faBars} /></Button> }
         { toggle && <Button onClick = {() => setToggle(false)}><FontAwesomeIcon icon={faTimes} /></Button> }
-        <Image src={logo} alt="logo" width = {97} height={60} placeholder = "blur"/>
+        <LinkImage src = {logo} alt = "logo" width = {97} height = {60} placeholder=  "blur" href = "/" />
         <List viewMobile = {toggle}>
             <ListElem> 
                 {/* <NavElem 

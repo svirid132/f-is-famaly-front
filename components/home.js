@@ -33,8 +33,8 @@ function Home({seasons}) {
                             },
                         numberSeason: 1,
                         title: "5 сезон",
-                        href: "/season"
-                        }}
+                        }} 
+                        href =  "/season"
                     />)
                 })}
             </ContainerPoster>

@@ -2,16 +2,18 @@ import React from 'react'
 import styled from 'styled-components';
 import Link from 'next/link'
 
-const withLink = (Component) => ({ content, className }) => {
+const withLink = (Component) => (props) => {
     
-    const {href, ...otherContent} = content;
+    const {className, href, children, ...otherProps} = props;
 
     return (
-    <Link href = {href}>
-        <A className = {className}>
-            <Component content = { otherContent } />
-        </A>
-    </Link>
+      <Link href = {href}>
+          <A className = {className}>
+              <Component {...otherProps} > 
+                {children}
+              </Component>
+          </A>
+      </Link>
   );
     }
 
