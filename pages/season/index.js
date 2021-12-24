@@ -1,7 +1,6 @@
-import Image from 'next/image'
 import React from 'react'
-import styled from 'styled-components'
-import {Season as CompSeason} from "components/season"
+import {default as CompSeason} from "components/season"
+import Layout from "components/layout"
 
 function Season({seasons}) {
     return (

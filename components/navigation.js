@@ -39,7 +39,7 @@ const Navigation = ({ seasons }) => {
 const Nav = styled.nav`
     display: flex;
     position: relative;
-    height: 60px;
+    height: ${props => props.theme.navigationHeight};
     background-color: #F3DAAF;
     justify-content: center;
     box-shadow: 0 5px 5px gray;/*x y прозрачность цвет*/

@@ -5,6 +5,8 @@ import ContainerInfo from './container-info'
 import PosterCard from './poster-card'
 import withLink from './with-link'
 
+const LinkPoster = withLink(PosterCard);
+
 function Home({seasons}) {
 
     return (
@@ -23,14 +25,18 @@ function Home({seasons}) {
                 <span>5 сезонов</span>
             </Header>
             <ContainerPoster>
-                <LinkPoster content={{
-                    img: {
-                        src: "/poster.jpg",
-                        alt: "poster"
-                        },
-                    numberSeason: 1,
-                    title: "5 сезон"
-                }}/>
+                {new Array(5).fill(null).map((elem, index) => {
+                    return (<LinkPosterStyle key = {index} content={{
+                        img: {
+                            src: "/poster.jpg",
+                            alt: "poster"
+                            },
+                        numberSeason: 1,
+                        title: "5 сезон",
+                        href: "/season"
+                        }}
+                    />)
+                })}
             </ContainerPoster>
             <Informations    />
         </Body>
@@ -40,9 +46,9 @@ function Home({seasons}) {
 const Body = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 20px 20px;
+    padding: ${props => props.theme.mainPadding};
     background-color: white;
-    min-height: calc(100vh - 60px);
+    min-height: calc(100vh - ${props => props.theme.navigationHeight});
 `
 
 const Header = styled.header`
@@ -68,11 +74,9 @@ const ContainerPoster = styled.div`
     row-gap: 30px;
 `
 
-const Poster = styled(PosterCard)`
+const LinkPosterStyle = styled(LinkPoster)`
   width: 22%;
 `;
-
-const LinkPoster = withLink(Poster, "/");
 
 const Informations = styled(ContainerInfo)`
   margin-top: 20px;

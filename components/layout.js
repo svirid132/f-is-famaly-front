@@ -1,11 +1,16 @@
 import Image from 'next/image';
-import styled from 'styled-components';
+import styled, {ThemeProvider} from 'styled-components';
 import Navigation from './navigation'
+
+const theme = {
+    navigationHeight: "60px",
+    mainPadding: "20px 20px"
+}
 
 function Layout({children, seasons}) {
 
     return (
-        <>
+        <ThemeProvider theme={theme}>
             <BackWrapper>
                 <Image
                     alt="Mountains"
@@ -18,7 +23,7 @@ function Layout({children, seasons}) {
             <CompWrapper>
                 {children}
             </CompWrapper>
-        </>
+        </ThemeProvider>
     )
 }
 
@@ -34,7 +39,7 @@ const BackWrapper = styled.div`
 `;
 
 const CompWrapper = styled.div`
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
 `;
 
