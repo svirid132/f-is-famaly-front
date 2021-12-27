@@ -39,7 +39,7 @@ const Figcaption = styled.figcaption`
     display: inline-block;
     position: absolute;
     bottom: 0;
-    background-color: blue;
+    background-color: #f26a2c;
     padding: 0 10px;
     color: white;
     & p {

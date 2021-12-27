@@ -6,8 +6,28 @@ import PosterCard from './poster-card'
 import withLink from './with-link'
 
 const LinkPoster = withLink(PosterCard);
+const localHost = "http://localhost:1337"
 
 function Home({seasons}) {
+
+    const posterElms = seasons.map((season, index) => {
+        const attrs = season.attributes;
+        const picAttrs = season.attributes.picture.data.attributes;
+        const content = { 
+            img: {
+                src: localHost + picAttrs.url,
+                alt: attrs.Title
+            },
+            numberSeason: attrs.Number,
+            title: attrs.Title,
+        }
+
+        return (<LinkPosterStyle 
+            key = {index}
+            content = {content}
+            href =  {`/season/${attrs.Slug}`}
+        />)
+    })
 
     return (
         <Body>
@@ -24,19 +44,8 @@ function Home({seasons}) {
                 </h2>
                 <span>5 сезонов</span>
             </Header>
-            <ContainerPoster>
-                {new Array(5).fill(null).map((elem, index) => {
-                    return (<LinkPosterStyle key = {index} content={{
-                        img: {
-                            src: "/poster.jpg",
-                            alt: "poster"
-                            },
-                        numberSeason: 1,
-                        title: "5 сезон",
-                        }} 
-                        href =  "/season"
-                    />)
-                })}
+            <ContainerPoster size = {seasons.length}>
+                {posterElms}
             </ContainerPoster>
             <Informations    />
         </Body>
@@ -69,7 +78,7 @@ const TitleSmall = styled.small`
 const ContainerPoster = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: ${props => props.size > 3 ? "space-between" : "space-around"};
     column-gap: 3%;
     row-gap: 30px;
 `

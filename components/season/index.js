@@ -3,22 +3,26 @@ import styled from 'styled-components'
 import Header from './header'
 import ListLinkArticle from 'components/list-link-posters'
 
-function Season() {
+const localHost = "http://localhost:1337";
 
-    const elems = new Array(5).fill(null).map((nullElem,index) => {
+function Season({season, episodes}) {
+
+    const elems = episodes.map((episode, index) => {
+        const attrs = episode.attributes;
+        const picAttrs = episode.attributes.picture.data.attributes;
         const elem = {};
         elem.content = {
-            img: { src: "/poster.jpg", alt: "picture", info: "5 сезон спецвыпуск"},
-            name: "Спецвыпуск",
-            date: "2021-08-05",
+            img: { src: localHost + picAttrs.url, alt: picAttrs.name, info: attrs.title},
+            name: attrs.title,
+            date: attrs.publishedAt,
         };
-        elem.href = "/episode"
+        elem.href = `${season[0].attributes.Slug}/` + "episode/" + attrs.Slug;
         return elem;
-    });
+    })
 
     return (
     <Body>
-        <Header />
+        <Header season={ season }/>
         <ListLinkArticle title={"Все серии 5 сезона"} elems = {elems}/>
         <ContainerVideo>
             <p>Рик и Морти возвращаются в 5-й сезон в воскресенье, 20 июня, в 11 вечера в США, в России первые переводы будут в понедельник, Сыендук во вторник-среду.</p>

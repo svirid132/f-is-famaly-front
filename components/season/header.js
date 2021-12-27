@@ -1,21 +1,27 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function Header() {
+const localHost = "http://localhost:1337"
+
+function Header({season}) {
+
+    const attrs = season[0].attributes;
+    const picAttrs = season[0].attributes.picture.data.attributes;
+
     return (
         <Body>
             <div>
-                <HeaderImg src={"/poster.jpg"} alt="poster" />
+                <HeaderImg src={localHost + picAttrs.url} alt={attrs.Title} />
             </div>
             <Info>
                 <Name>
-                    <h2>Рик и Морти 5 сезон смотреть онлайн</h2>
-                    <small>2021-06-20</small>
+                    <h2>{`С значит Семья ${attrs.Number} сезон смотреть онлайн`}</h2>
+                    <small>{`${attrs.publishedAt}`}</small>
                 </Name>
                 <Autors>
-                    <p><span>Авторы:</span> Ройланд Джастин, Хармон Дэн</p>
-                    <p><span>Режисеры:</span> Джефф Майерс, Брайан Ньютон, Джон Райс, Джастин Ройланд, Стивен Сандовал</p>
-                    <p><span>Перевод на русский:</span> Сыендук</p>
+                    <p><strong>Авторы:</strong> {`${attrs.directors}`}</p>
+                    <p><strong>Режисеры:</strong> {`${attrs.directors}`}</p>
+                    <p><strong>Перевод на русский:</strong> Netflix</p>
                 </Autors>
             </Info>
         </Body>

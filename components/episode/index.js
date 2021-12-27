@@ -6,18 +6,34 @@ import withLink from 'components/with-link';
 import React from 'react'
 import styled from 'styled-components'
 
-function Episode({className}) {
+const localHost = "http://localhost:1337";
 
-    const elems = new Array(5).fill(null).map((nullElem,index) => {
+function Episode({episode, episodes, className}) {
+
+    const elems = new episodes.map((infoElem,index) => {
+        const attrs = episode.attributes;
+        const picAttrs = episode.attributes.picture.data.attributes;
         const elem = {};
         elem.content = {
-            img: { src: "/expImg.webp", alt: "picture", info: "5 сезон спецвыпуск"},
-            name: "Спецвыпуск",
-            date: "2021-08-05",
+            img: { src: localHost + picAttrs.url, alt: picAttrs.name, info: attrs.title},
+            name: attrs.title,
+            date: attrs.publishedAt,
         };
-        elem.href = "/season";
+        elem.href = "/episode/" + attrs.Slug;
         return elem;
     });
+
+    const currentSlug = episode.attributes.Slug;
+    const [lastLinkEpisode, nextLinkEpisode] = episodes.reduce((accam, elem, index) => {
+        const slug = episode.attributes;
+        if (episodes.length > 1 && slug === currentSlug) {
+            accam[0] = episodes[index - 1];
+        }
+        if (episodes.length > index + 2 && slug === currentSlug) {
+            accam[1] = episodes[index + 1];
+        }
+        return accam;
+    }, [null, null]);  
 
     return (
         <Body className={className}>
@@ -25,13 +41,13 @@ function Episode({className}) {
             <ControlVideo>
                 <video src="./assets/video.mp4" controls></video>
                 <HeaderBtn>
-                    <LinkButtonStyle href = "/">
+                    <LinkButtonStyle href = {lastLinkEpisode}>
                         <Icon icon={faChevronLeft} />Предыдущая серия
                     </LinkButtonStyle>
-                    <LinkButtonStyle href = "/">
+                    <LinkButtonStyle href = "#list-episodes">
                         <Icon icon={faBars}/>список серий
                     </LinkButtonStyle>
-                    <LinkButtonStyle href = "/">
+                    <LinkButtonStyle href = {nextLinkEpisode}>
                         следующая серия<Icon icon={faChevronRight} />
                     </LinkButtonStyle>
                 </HeaderBtn>
@@ -52,7 +68,7 @@ function Episode({className}) {
                 <p>Дата выхода: 2021-06-28</p>
             </Date>
 
-            <ListLinkArticle title = {"Все серии 5 сезона"} elems = {elems} />
+            <ListLinkArticle id="list-episodes" title = {"Все серии 5 сезона"} elems = {elems} />
         </Body>
     )
 }
@@ -83,7 +99,7 @@ const Button = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: aqua;
+    background-color: #f26a2c;
     padding: 15px 0;
     width: 100%;
     text-align: center;

@@ -1,10 +1,10 @@
 import React, {useState} from "react"
 import Link from "next/link"
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 import logo from "../assets/F-is-famaly-logo.jpg"
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faTimes, faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 import NavElem from "./nav-elem"
 import withLink from "./with-link"
 
@@ -14,12 +14,12 @@ const Navigation = ({ seasons }) => {
 
     const [toggle, setToggle] = useState(false);
 
-    // const season = {link: "", text: "сезоны"};
-    // const seasonUnders = seasons.map((season) => {
-    //     const text = season.attributes.Title;
-    //     const link = `/season/${season.attributes.Number}`;
-    //     return {link: link, text: text};
-    // });
+    const season = {link: "", text: "сезоны"};
+    const seasonUnders = seasons.map((season) => {
+        const text = season.attributes.Title;
+        const link = `/season/${season.attributes.Number}`;
+        return {link: link, text: text};
+    });
     
     return (
     <Nav>
@@ -28,10 +28,10 @@ const Navigation = ({ seasons }) => {
         <LinkImage src = {logo} alt = "logo" width = {97} height = {60} placeholder=  "blur" href = "/" />
         <List viewMobile = {toggle}>
             <ListElem> 
-                {/* <NavElem 
+                <NavElem 
                     content = { season }
                     under = { seasonUnders }
-                />  */}
+                /> 
             </ListElem>
         </List>
     </Nav>
@@ -62,12 +62,11 @@ const Button = styled.button`
     left: 0;
     width: 60px;
     height: 60px;
-    background-color: #f8981c;
     border: 1px solid gray;
     font-size: 20px;
     color: blue;
 
-    background-color: ${({selected}) => selected ? "#f8981c": "transparent"};
+    background-color: ${({selected}) => selected ? "#f26a2c": "transparent"};
 
     &:hover{
         cursor: pointer;

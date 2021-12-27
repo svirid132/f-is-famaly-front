@@ -7,7 +7,7 @@ const withLink = (Component) => (props) => {
     const {className, href, children, ...otherProps} = props;
 
     return (
-      <Link href = {href}>
+      <Link href = {href} passHref>
           <A className = {className}>
               <Component {...otherProps} > 
                 {children}

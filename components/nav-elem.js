@@ -58,7 +58,7 @@ const ElemWrapper = styled.div`
     border: solid gray;
     border-width: 2px 0;
     &:hover {
-        background-color: #f7a222;
+        background-color: #f26a2c;
     }
     @media screen and (min-width: 900px) {
         padding: 0 20px;
@@ -72,7 +72,7 @@ const UnderList = styled.ul`
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    background-color: #F3DAAF;
+    background-color: #f26a2c;
     @media screen and (min-width: 900px) {
         display: ${props => props.viewComp ? "flex" : "none"};
         background-color: transparent;
@@ -87,9 +87,9 @@ const UnderList = styled.ul`
 const ListElem = styled.li`
     width: 50%;
     text-align: center;
-    background-color: ${(props) => props.selectMobile ? "#f7a222": "#F3DAAF"};
+    background-color: ${(props) => props.selectMobile ? "#f26a2c": "#F3DAAF"};
     &:hover {
-        background-color: #f7a222;
+        background-color: #f26a2c;
     }
     &::before {
         content: "-";

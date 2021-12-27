@@ -80,7 +80,8 @@ const Info = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: aqua;
+    background-color: #f26a2c;
+    color: black;
     max-height: 30px;
     border-radius: 0 0 3px 3px;
     border: 1px solid black;
