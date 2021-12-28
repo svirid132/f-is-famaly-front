@@ -3,14 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ListLinkArticle from 'components/list-link-posters';
 import Poster from 'components/poster';
 import withLink from 'components/with-link';
-import React from 'react'
+import React, {useRef} from 'react'
 import styled from 'styled-components'
 
 const localHost = "http://localhost:1337";
 
-function Episode({episode, episodes, className}) {
+function Episode({season, episode, className}) {
 
-    const elems = new episodes.map((infoElem,index) => {
+    const episodes = season.attributes.epizodes.data;
+
+    const elems = episodes.map((episode, index) => {
         const attrs = episode.attributes;
         const picAttrs = episode.attributes.picture.data.attributes;
         const elem = {};
@@ -24,32 +26,39 @@ function Episode({episode, episodes, className}) {
     });
 
     const currentSlug = episode.attributes.Slug;
-    const [lastLinkEpisode, nextLinkEpisode] = episodes.reduce((accam, elem, index) => {
-        const slug = episode.attributes;
-        if (episodes.length > 1 && slug === currentSlug) {
-            accam[0] = episodes[index - 1];
+
+    const [lastLinkEpisode, nextLinkEpisode] = episodes.reduce((accam, episode, index) => {
+        const slug = episode.attributes.Slug;
+        const isPreviousEp = index > 0;
+        const isNextEp = episodes[index + 1] ? true: false;
+        const isMatch = slug === currentSlug;
+        if (isPreviousEp && isMatch) {
+            accam[0] = "/episode/" + episodes[index - 1].attributes.Slug;
         }
-        if (episodes.length > index + 2 && slug === currentSlug) {
-            accam[1] = episodes[index + 1];
+        if (isNextEp && isMatch) {
+            accam[1] = "/episode/" + episodes[index + 1].attributes.Slug;
         }
         return accam;
     }, [null, null]);  
+
+    const urlVideo = episode.attributes.video.data[0].attributes.url;
+    const scrollEl = useRef(null);
 
     return (
         <Body className={className}>
 
             <ControlVideo>
-                <video src="./assets/video.mp4" controls></video>
+                <video src={localHost + urlVideo} controls></video>
                 <HeaderBtn>
-                    <LinkButtonStyle href = {lastLinkEpisode}>
+                    {lastLinkEpisode && <LinkButtonStyle href = {lastLinkEpisode}>
                         <Icon icon={faChevronLeft} />Предыдущая серия
-                    </LinkButtonStyle>
-                    <LinkButtonStyle href = "#list-episodes">
+                    </LinkButtonStyle> }
+                    <Button onClick = {() => scrollEl.current.scrollIntoView({behavior: 'smooth'})}>
                         <Icon icon={faBars}/>список серий
-                    </LinkButtonStyle>
-                    <LinkButtonStyle href = {nextLinkEpisode}>
+                    </Button>
+                    {nextLinkEpisode && <LinkButtonStyle href = {nextLinkEpisode}>
                         следующая серия<Icon icon={faChevronRight} />
-                    </LinkButtonStyle>
+                    </LinkButtonStyle> }
                 </HeaderBtn>
             </ControlVideo>
 
@@ -68,7 +77,7 @@ function Episode({episode, episodes, className}) {
                 <p>Дата выхода: 2021-06-28</p>
             </Date>
 
-            <ListLinkArticle id="list-episodes" title = {"Все серии 5 сезона"} elems = {elems} />
+            <ListLinkArticle ref = {scrollEl} title = {"Все серии 5 сезона"} elems = {elems} />
         </Body>
     )
 }
@@ -103,6 +112,7 @@ const Button = styled.div`
     padding: 15px 0;
     width: 100%;
     text-align: center;
+    cursor: pointer;
     @media screen and (min-width: 900px) {
         padding: 20px 0;
     }
@@ -111,8 +121,8 @@ const Button = styled.div`
 const LinkButton = withLink(Button);
 
 const LinkButtonStyle = styled(LinkButton)`
-  width: 100%;
-`;
+    width: 100%;
+`
 
 const Title = styled.div`
     border-bottom: 1px solid black;

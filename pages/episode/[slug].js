@@ -7,10 +7,10 @@ import Layout from 'components/layout'
 import { fetchAPI } from 'lib/api'
 import { useRouter } from 'next/router'
 
-function Episode({episodes, episode, seasons}) {
+function Episode({episode, season, seasons}) {
     return (
     <Layout seasons={seasons}>
-        <CompEpisode episode = {episode} episodes={episodes}/>
+        <CompEpisode season = {season} episode={episode}/>
     </Layout>
     )
 }
@@ -45,32 +45,22 @@ export async function getStaticProps({ params }) {
       },
     },
   })
-  const seasonData = seasonResp.data;
+  const seasonData = seasonResp.data[0];
 
-    const episodeResp = await fetchAPI("/epizodes", { 
-      filters: { slug: params.slug },
-      populate: "*"
-    });
-    const episode = episodeResp.data[0];
+  const seasonsResp = await fetchAPI("/seasons", { populate: "*" });
+  const seasonsData = seasonsResp.data;
 
-    const seasonResp = await fetchAPI("/seasons", {
-        filters: { slug: params.slug },
-        populate: {
-            epizodes: {
-            populate: "*",
-          },
-        },
-      })
-    const episodesData = seasonResp.data[0].attributes.epizodes.data;
-
-    const seasonsResp = await fetchAPI("/seasons", { populate: "*" });
-    const seasonsData = seasons.data;
+  const episodeResp = await fetchAPI("/epizodes", { 
+    filters: { slug: params.slug },
+    populate: "*"
+  });
+  const episodeData = episodeResp.data[0];
 
     return {
       props: { 
+        season: seasonData,
         seasons: seasonsData,
-        episode: episode,
-        episodes: episodesData,
+        episode: episodeData,
       },
       revalidate: 1,
     }

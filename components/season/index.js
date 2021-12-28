@@ -5,7 +5,7 @@ import ListLinkArticle from 'components/list-link-posters'
 
 const localHost = "http://localhost:1337";
 
-function Season({season, episodes}) {
+function Season({season, episodes, additionSeason}) {
 
     const elems = episodes.map((episode, index) => {
         const attrs = episode.attributes;
@@ -16,22 +16,29 @@ function Season({season, episodes}) {
             name: attrs.title,
             date: attrs.publishedAt,
         };
-        elem.href = `${season[0].attributes.Slug}/` + "episode/" + attrs.Slug;
+        elem.href = "/episode/" + attrs.Slug;
         return elem;
     })
+
+
+    const text = additionSeason ? additionSeason.attributes.description: null;
+    const urlVideo = additionSeason? additionSeason.attributes.urlVideo: null;
+    const isAdditionSection = urlVideo ? true : false;
 
     return (
     <Body>
         <Header season={ season }/>
         <ListLinkArticle title={"Все серии 5 сезона"} elems = {elems}/>
-        <ContainerVideo>
-            <p>Рик и Морти возвращаются в 5-й сезон в воскресенье, 20 июня, в 11 вечера в США, в России первые переводы будут в понедельник, Сыендук во вторник-среду.</p>
-            <LimitVideo>
-                <Video>
-                    <iframe src="https://www.youtube.com/embed/sPAw95c_AOE"></iframe> 
-                </Video>
-            </LimitVideo>
-        </ContainerVideo>
+        {isAdditionSection &&
+            <ContainerVideo>
+                <p>{text}</p>
+                <LimitVideo>
+                    <Video>
+                        <iframe src={urlVideo}></iframe> 
+                    </Video>
+                </LimitVideo>
+            </ContainerVideo>
+        }
     </Body>
     )
 }
@@ -39,6 +46,7 @@ function Season({season, episodes}) {
 const Body = styled.div`
   background-color: white;
   padding: ${props => props.theme.mainPadding};
+  min-height: calc(100vh - ${props => props.theme.navigationHeight});
 `;
 
 const ContainerVideo = styled.div`

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Moment from "react-moment"
 
 function Poster({content}) {
     return (
@@ -10,7 +11,9 @@ function Poster({content}) {
                 </Figure>
                 <Info>
                     <p>{content.name}</p>
-                    <small>{content.date}</small>
+                    <Moment format="MMM Do YYYY">
+                        <small>{content.date}</small>
+                    </Moment>
                 </Info>
         </div>
     )

@@ -17,7 +17,7 @@ const Navigation = ({ seasons }) => {
     const season = {link: "", text: "сезоны"};
     const seasonUnders = seasons.map((season) => {
         const text = season.attributes.Title;
-        const link = `/season/${season.attributes.Number}`;
+        const link = `/season/${season.attributes.Slug}`;
         return {link: link, text: text};
     });
     

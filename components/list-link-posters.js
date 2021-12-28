@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import Poster from 'components/poster';
 import withLink from './with-link';
 import styled from 'styled-components';
 
 const LinkPoster = withLink(Poster);
 
-function ListLinkArticle({title, elems}) {
+function ListLinkArticle({title, elems}, ref) {
     
     const elemList = elems.map((elem, index) => {
 
@@ -17,7 +17,7 @@ function ListLinkArticle({title, elems}) {
     });
 
     return (
-        <Body>
+        <Body ref = {ref}>
             <h3>{title}</h3>
             <List>
                 {elemList}
@@ -54,4 +54,4 @@ const ListElem = styled.li`
     }
 `
 
-export default ListLinkArticle
+export default forwardRef(ListLinkArticle)

@@ -3,10 +3,10 @@ import {default as CompSeason} from "components/season"
 import Layout from "components/layout"
 import { fetchAPI } from 'lib/api'
 
-function Season({season, seasons, episodes}) {
+function Season({season, seasons, additionSeason, episodes}) {
     return (
     <Layout seasons={seasons}>
-        <CompSeason season={season} episodes={episodes}/>
+        <CompSeason season={season} episodes={episodes} additionSeason={additionSeason}/>
     </Layout> 
     )
 }
@@ -44,10 +44,23 @@ export async function getStaticProps({ params }) {
 
     const seasons = await fetchAPI("/seasons", { populate: "*" });
     const seasonsData = seasons.data; 
+
+    const additionSeasonResp = await fetchAPI("/addition-seasons", {
+      populate: "*",
+      filters: {
+          season: {
+            slug: {
+              $eq: params.slug
+            },
+        },
+      },
+    })
+    const additionSeasonData = additionSeasonResp.data[0];
   
     return {
       props: { 
         season: seasonData,
+        additionSeason: additionSeasonData ? additionSeasonData : null,
         seasons: seasonsData,
         episodes: episodesData,
       },
