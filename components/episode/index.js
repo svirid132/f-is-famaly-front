@@ -6,7 +6,7 @@ import withLink from 'components/with-link';
 import React, {useRef} from 'react'
 import styled from 'styled-components'
 
-const localHost = "http://localhost:1337";
+const server = process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
 
 function Episode({season, episode, className}) {
 
@@ -17,7 +17,7 @@ function Episode({season, episode, className}) {
         const picAttrs = episode.attributes.picture.data.attributes;
         const elem = {};
         elem.content = {
-            img: { src: localHost + picAttrs.url, alt: picAttrs.name, info: attrs.title},
+            img: { src: server + picAttrs.url, alt: picAttrs.name, info: attrs.title},
             name: attrs.title,
             date: attrs.publishedAt,
         };
@@ -48,7 +48,7 @@ function Episode({season, episode, className}) {
         <Body className={className}>
 
             <ControlVideo>
-                <video src={localHost + urlVideo} controls></video>
+                <video src={server + urlVideo} controls></video>
                 <HeaderBtn>
                     {lastLinkEpisode && <LinkButtonStyle href = {lastLinkEpisode}>
                         <Icon icon={faChevronLeft} />Предыдущая серия

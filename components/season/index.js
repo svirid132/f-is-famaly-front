@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Header from './header'
 import ListLinkArticle from 'components/list-link-posters'
 
-const localHost = "http://localhost:1337";
+const server = process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
 
 function Season({season, episodes, additionSeason}) {
 
@@ -12,7 +12,7 @@ function Season({season, episodes, additionSeason}) {
         const picAttrs = episode.attributes.picture.data.attributes;
         const elem = {};
         elem.content = {
-            img: { src: localHost + picAttrs.url, alt: picAttrs.name, info: attrs.title},
+            img: { src: server + picAttrs.url, alt: picAttrs.name, info: attrs.title},
             name: attrs.title,
             date: attrs.publishedAt,
         };

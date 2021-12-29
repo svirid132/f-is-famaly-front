@@ -6,7 +6,7 @@ import PosterCard from './poster-card'
 import withLink from './with-link'
 
 const LinkPoster = withLink(PosterCard);
-const localHost = "http://localhost:1337"
+const server = process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
 
 function Home({seasons}) {
 
@@ -15,7 +15,7 @@ function Home({seasons}) {
         const picAttrs = season.attributes.picture.data.attributes;
         const content = { 
             img: {
-                src: localHost + picAttrs.url,
+                src: server + picAttrs.url,
                 alt: attrs.Title
             },
             numberSeason: attrs.Number,

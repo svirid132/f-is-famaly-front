@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const localHost = "http://localhost:1337"
+const server = process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
 
 function Header({season}) {
 
@@ -11,7 +11,7 @@ function Header({season}) {
     return (
         <Body>
             <div>
-                <HeaderImg src={localHost + picAttrs.url} alt={attrs.Title} />
+                <HeaderImg src={server + picAttrs.url} alt={attrs.Title} />
             </div>
             <Info>
                 <Name>
