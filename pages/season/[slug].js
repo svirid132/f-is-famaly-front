@@ -4,6 +4,11 @@ import Layout from "components/layout"
 import { fetchAPI } from 'lib/api'
 
 function Season({season, seasons, additionSeason, episodes}) {
+
+  // if (season === undefined) {
+  //   return <>Oooops problem!!!</>
+  // }
+
     return (
     <Layout seasons={seasons}>
         <CompSeason season={season} episodes={episodes} additionSeason={additionSeason}/>
