@@ -2,7 +2,7 @@ import { faBars, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-s
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ListLinkArticle from 'components/list-link-posters';
 import Poster from 'components/poster';
-import withLink from 'components/with-link';
+import withLink from 'HOC/with-link';
 import React, {useRef} from 'react'
 import styled from 'styled-components'
 

@@ -1,6 +1,6 @@
 import React, {forwardRef} from 'react'
 import Poster from 'components/poster';
-import withLink from './with-link';
+import withLink from '../HOC/with-link';
 import styled from 'styled-components';
 
 const LinkPoster = withLink(Poster);

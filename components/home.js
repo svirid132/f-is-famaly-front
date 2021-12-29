@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import ContainerInfo from './container-info'
 import PosterCard from './poster-card'
-import withLink from './with-link'
+import withLink from '../HOC/with-link'
 
 const LinkPoster = withLink(PosterCard);
 const server = process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";

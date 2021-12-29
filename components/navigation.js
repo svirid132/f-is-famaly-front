@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 import NavElem from "./nav-elem"
-import withLink from "./with-link"
+import withLink from "../HOC/with-link"
 
 const LinkImage = withLink(Image);
 
