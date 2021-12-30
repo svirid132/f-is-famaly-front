@@ -46,6 +46,7 @@ const Nav = styled.nav`
     justify-content: center;
     box-shadow: 0 5px 5px gray;/*x y прозрачность цвет*/
     width: 100%;
+    z-index: 1000;
 
     p {
         margin: 0;
