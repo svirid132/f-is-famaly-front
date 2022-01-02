@@ -64,7 +64,6 @@ const Info = styled.div`
 
 const Date = styled.small`
     color: gray;
-    font-size: 6px;
 `
 
 export default Poster
