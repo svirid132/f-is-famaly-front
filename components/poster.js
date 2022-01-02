@@ -11,8 +11,8 @@ function Poster({content}) {
                 </Figure>
                 <Info>
                     <p>{content.name}</p>
-                    <Moment format="MMM Do YYYY">
-                        <small>{content.date}</small>
+                    <Moment format="DD/MM/YYYY">
+                        <Date>{content.date}</Date>
                     </Moment>
                 </Info>
         </div>
@@ -58,6 +58,11 @@ const Info = styled.div`
     & small {
         color: gray;
     }
+`
+
+const Date = styled.small`
+    color: gray;
+    font-size: 6px;
 `
 
 export default Poster

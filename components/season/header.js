@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Moment from "react-moment"
 
 const server = process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
 
@@ -16,7 +17,7 @@ function Header({season}) {
             <Info>
                 <Name>
                     <h2>{`С значит Семья ${attrs.Number} сезон смотреть онлайн`}</h2>
-                    <small>{`${attrs.publishedAt}`}</small>
+                    <small><Moment format="DD/MM/YYYY">{attrs.publishedAt}</Moment></small>
                 </Name>
                 <Autors>
                     <p><strong>Авторы:</strong> {`${attrs.directors}`}</p>

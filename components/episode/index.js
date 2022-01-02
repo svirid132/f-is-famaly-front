@@ -1,10 +1,10 @@
 import { faBars, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ListLinkArticle from 'components/list-link-posters';
-import Poster from 'components/poster';
 import withLink from 'HOC/with-link';
 import React, {useRef} from 'react'
 import styled from 'styled-components'
+import Moment from "react-moment"
 
 const server = process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
 
@@ -26,7 +26,6 @@ function Episode({season, episode, className}) {
     });
 
     const currentSlug = episode.attributes.Slug;
-
     const [lastLinkEpisode, nextLinkEpisode] = episodes.reduce((accam, episode, index) => {
         const slug = episode.attributes.Slug;
         const isPreviousEp = index > 0;
@@ -43,6 +42,10 @@ function Episode({season, episode, className}) {
 
     const urlVideo = episode.attributes.video.data[0].attributes.url;
     const scrollEl = useRef(null);
+
+    const description = episode.attributes.description.split("\n").map((words, index) => {
+        return <p key = {index}>{words}</p>
+    })
 
     return (
         <Body className={className}>
@@ -63,18 +66,19 @@ function Episode({season, episode, className}) {
             </ControlVideo>
 
             <Title>
-                <h2>Рик и Морти 5 сезон 1 серия</h2>
+                <h2>{`С значит семья сезон ${season.attributes.Number} серия ${episode.attributes.number}`}</h2>
             </Title>
 
             <Description>
-                <h3>Смертность</h3>
-                <p>«Саммер встречает Бога» — специальный выпуск «Рика и Морти» в стиле анимэ от японского режиссера Такаси Сано.</p>
-                <p>Новый парень Саммер – не человек, у Джерри, как всегда, большие проблемы, Морти сталкивается со Злом, а Рик здоров … и как всегда, в своем репертуаре. В итоге планета разрушена, на Землю больше не сможет никто вернуться, зато здесь есть Саммер и ее новый друг, вместе с которым она сможет построить новый мир – Мир Рика, как она собирается назвать его в честь своего деда.</p>
-                <p>«Саммер встречает Бога» — специальный выпуск «Рика и Морти» в стиле анимэ от японского режиссера Такаси Сано.</p>
+                <h3>{episode.attributes.title}</h3>
+                <p>{description}</p>
             </Description>
 
             <Date>
-                <p>Дата выхода: 2021-06-28</p>
+                    <p>
+                        {"Дата выхода: "} 
+                        <Moment format="DD/MM/YYYY">{episode.attributes.publishedAt}</Moment>
+                    </p>
             </Date>
 
             <ListLinkArticle ref = {scrollEl} title = {"Все серии 5 сезона"} elems = {elems} />

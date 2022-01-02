@@ -1,5 +1,4 @@
-import React, {useState} from "react"
-import Link from "next/link"
+import React, {useState, useRef} from "react"
 import styled from 'styled-components'
 import logo from "../assets/F-is-famaly-logo.jpg"
 import Image from 'next/image'
@@ -12,6 +11,7 @@ const LinkImage = withLink(Image);
 
 const Navigation = ({ seasons }) => {
 
+    //For mobile
     const [toggle, setToggle] = useState(false);
 
     const season = {link: "", text: "сезоны"};
@@ -20,9 +20,21 @@ const Navigation = ({ seasons }) => {
         const link = `/season/${season.attributes.Slug}`;
         return {link: link, text: text};
     });
+
+    //For click outside
+    const bodyRef = useRef();
+    const handleOutsideClick = (event) => {
+        const path = event.path || (event.composedPath && event.composedPath());
+        if (!path.includes(bodyRef.current)) {
+            setToggle(false);
+        }
+    };
+    React.useEffect(() => {
+        document.body.addEventListener('click', handleOutsideClick);
+    }, []);
     
     return (
-    <Nav>
+    <Nav ref= {bodyRef}>
         { !toggle && <Button selected onClick = {() => setToggle(true)}><FontAwesomeIcon icon={faBars} /></Button> }
         { toggle && <Button onClick = {() => setToggle(false)}><FontAwesomeIcon icon={faTimes} /></Button> }
         <LinkImage src = {logo} alt = "logo" width = {97} height = {60} placeholder=  "blur" href = "/" />

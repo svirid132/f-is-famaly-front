@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import styled from 'styled-components'
 import NavUnderElem from './nav-under-elem';
-import { faBars, faTimes, faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function NavElem({content, under}) {
