@@ -13,7 +13,7 @@ function Season({season, episodes, additionSeason}) {
         const elem = {};
         elem.content = {
             img: { src: server + picAttrs.url, alt: picAttrs.name, info: attrs.title},
-            name: attrs.title,
+            name: `${attrs.Number} серия`,
             date: attrs.publishedAt,
         };
         elem.href = "/episode/" + attrs.Slug;

@@ -22,7 +22,7 @@ function Header({season}) {
                 <Autors>
                     <p><strong>Авторы:</strong> {`${attrs.directors}`}</p>
                     <p><strong>Режисеры:</strong> {`${attrs.directors}`}</p>
-                    <p><strong>Перевод на русский:</strong> Netflix</p>
+                    <p><strong>Перевод на русский:</strong> Jaskier</p>
                 </Autors>
             </Info>
         </Body>

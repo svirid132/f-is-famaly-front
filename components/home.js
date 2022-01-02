@@ -41,7 +41,7 @@ function Home({seasons}) {
                     <i className="fas fa-video"></i>
                     Все сезоны
                 </h2>
-                <span>5 сезонов</span>
+                <span>2 сезона</span>
             </Header>
             <ContainerPoster size = {seasons.length}>
                 {posterElms}
