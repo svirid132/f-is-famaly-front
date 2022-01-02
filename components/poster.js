@@ -11,9 +11,11 @@ function Poster({content}) {
                 </Figure>
                 <Info>
                     <p>{content.name}</p>
-                    <Moment format="DD/MM/YYYY">
-                        <Date>{content.date}</Date>
-                    </Moment>
+                    <Date>
+                        <Moment format="DD/MM/YYYY">
+                            {content.date}
+                        </Moment>
+                    </Date>
                 </Info>
         </div>
     )
