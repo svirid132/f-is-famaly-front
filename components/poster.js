@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import Moment from "react-moment"
+import Image from 'next/image'
 
 function Poster({content}) {
     return (
         <div>
             <Figure>
-                    <Img src={content.img.src} alt={content.img.alt} />
+                    <Img src={content.img.src} alt={content.img.alt} width={480} height={300} />
                     <Figcaption>{content.img.info}</Figcaption>
                 </Figure>
                 <Info>
@@ -34,7 +35,7 @@ const Figure = styled.figure`
     }
 `
 
-const Img = styled.img`
+const Img = styled(Image)`
     width: 100%;
     height: auto;
     border-radius: 3px;

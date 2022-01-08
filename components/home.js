@@ -9,6 +9,8 @@ const server = process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337"
 
 function Home({seasons}) {
 
+    seasons.sort((a, b) => a.attributes.Number - b.attributes.Number);
+
     const posterElms = seasons.map((season, index) => {
         const attrs = season.attributes;
         const picAttrs = season.attributes.picture.data.attributes;
@@ -28,6 +30,11 @@ function Home({seasons}) {
         />)
     })
 
+    //count seasons
+    const seasonText = seasons.length === 1 ? '1 сезон' : 
+        seasons.length >= 2 || seasons.length <= 4 ? `${seasons.length} сезона` : 
+        `${seasons.length} сезонов`;
+
     return (
         <Body>
             <Title>С Значит Семья смотреть онлайн</Title>
@@ -41,7 +48,7 @@ function Home({seasons}) {
                     <i className="fas fa-video"></i>
                     Все сезоны
                 </h2>
-                <span>2 сезона</span>
+                <span>{seasonText}</span>
             </Header>
             <ContainerPoster size = {seasons.length}>
                 {posterElms}

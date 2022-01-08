@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -5,7 +6,7 @@ function PosterCard({content, className}) {
     return (
         <Article className = {className}>
             <Poster>
-                <Img src={content.img.src} alt={content.img.alt} />
+                <Img src={content.img.src} alt={content.img.alt} height={1200} width={810} />
                 <ContainerSeason>
                     <SeasonSmall>сезон</SeasonSmall>
                     <SeasonH3>{content.numberSeason}</SeasonH3>
@@ -69,7 +70,7 @@ const SeasonP = styled.p`
     text-overflow: ellipsis;
 `
 
-const Img = styled.img`
+const Img = styled(Image)`
     width: 100%;
     height: 100%;
     margin: 0;

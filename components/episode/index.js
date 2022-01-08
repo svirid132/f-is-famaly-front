@@ -5,25 +5,15 @@ import withLink from 'HOC/with-link';
 import React, {useRef} from 'react'
 import styled from 'styled-components'
 import Moment from "react-moment"
+import { createEpisodeElems } from 'function/create-episode-elems';
 
 const server = process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
 
 function Episode({season, episode, className}) {
 
     const episodes = season.attributes.epizodes.data;
-
-    const elems = episodes.map((episode, index) => {
-        const attrs = episode.attributes;
-        const picAttrs = episode.attributes.picture.data.attributes;
-        const elem = {};
-        elem.content = {
-            img: { src: server + picAttrs.url, alt: picAttrs.name, info: attrs.title},
-            name: `${attrs.number} серия`,
-            date: attrs.publishedAt,
-        };
-        elem.href = "/episode/" + attrs.Slug;
-        return elem;
-    });
+    
+    const elems = createEpisodeElems(episodes);
 
     const currentSlug = episode.attributes.Slug;
     const [lastLinkEpisode, nextLinkEpisode] = episodes.reduce((accam, episode, index) => {

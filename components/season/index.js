@@ -2,24 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import Header from './header'
 import ListLinkArticle from 'components/list-link-posters'
+import { createEpisodeElems } from 'function/create-episode-elems';
 
 const server = process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
 
 function Season({season, episodes, additionSeason}) {
 
-    const elems = episodes.map((episode, index) => {
-        const attrs = episode.attributes;
-        const picAttrs = episode.attributes.picture.data.attributes;
-        const elem = {};
-        elem.content = {
-            img: { src: server + picAttrs.url, alt: picAttrs.name, info: attrs.title},
-            name: `${attrs.number} серия`,
-            date: attrs.publishedAt,
-        };
-        elem.href = "/episode/" + attrs.Slug;
-        return elem;
-    })
-
+    const elems = createEpisodeElems(episodes);
 
     const text = additionSeason ? additionSeason.attributes.description: null;
     const urlVideo = additionSeason? additionSeason.attributes.urlVideo: null;
