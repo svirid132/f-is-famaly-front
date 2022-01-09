@@ -25,7 +25,7 @@ export async function getStaticPaths() {
           slug: season.attributes.Slug,
         },
       })),
-      fallback: false,
+      fallback: 'blocking'
     }
   }
 
